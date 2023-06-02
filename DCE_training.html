@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.119">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Domenic Di Francesco, PhD, CEng">
+<meta name="dcterms.date" content="2022-11-01">
+
+<title>Data-Centric Engineering</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="DCE_training_files/libs/clipboard/clipboard.min.js"></script>
+<script src="DCE_training_files/libs/quarto-html/quarto.js"></script>
+<script src="DCE_training_files/libs/quarto-html/popper.min.js"></script>
+<script src="DCE_training_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="DCE_training_files/libs/quarto-html/anchor.min.js"></script>
+<link href="DCE_training_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="DCE_training_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="DCE_training_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="DCE_training_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="DCE_training_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">1</span>  Introduction</a>
+  <ul class="collapse">
+  <li><a href="#how-to-use-this-document" id="toc-how-to-use-this-document" class="nav-link" data-scroll-target="#how-to-use-this-document"><span class="toc-section-number">1.1</span>  How to use this document</a></li>
+  <li><a href="#are-spreadsheets-safe" id="toc-are-spreadsheets-safe" class="nav-link" data-scroll-target="#are-spreadsheets-safe"><span class="toc-section-number">1.2</span>  Are spreadsheets safe?</a></li>
+  </ul></li>
+  <li><a href="#scope-of-course" id="toc-scope-of-course" class="nav-link" data-scroll-target="#scope-of-course"><span class="toc-section-number">2</span>  Scope of course</a></li>
+  <li><a href="#the-instructors" id="toc-the-instructors" class="nav-link" data-scroll-target="#the-instructors"><span class="toc-section-number">3</span>  The instructors</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Data-Centric Engineering</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Introduction to engineering data analysis and reproducible workflows</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Domenic Di Francesco, PhD, CEng </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 1, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="how-to-use-this-document" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="how-to-use-this-document"><span class="header-section-number">1.1</span> How to use this document</h2>
+<p>This is a computational document that includes chunks of <code>Python</code>, <code>R</code>, and <code>Julia</code> code necessary to analyse the data, and solve the decision problems in the various examples. To achieve this, various libraries/packages have been used, and these will need to be installed and loaded for the code to run.</p>
+<div id="chunk_load_packages" class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Load Python Packages</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Load Julia Packages</a></li></ul>
+<div id="chunk_load_packages" class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cmdstanpy, requests, os, multiprocessing, math</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<pre class="{julia}"><code>using CSV, DataFrames, DataFramesMeta, Printf
+using Random, Distributions, Bootstrap, Copulas, LatinHypercubeSampling
+using JuMP, HiGHS, DecisionProgramming, Turing, LinearAlgebra
+</code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip: Loading packages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In <code>R</code>, <code>Python</code> and <code>Julia</code> packages first need to be installed. Guidance on installing packages can be found <a href="https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages">here</a> (for <code>R</code>), <a href="https://pypi.org/project/pip/">here</a> (for <code>Python</code>), and <a href="https://docs.julialang.org/en/v1/stdlib/Pkg/">here</a> for <code>Julia</code>.</p>
+<p>Packages only need to be installed once (unless they are uninstalled), but then need to be loaded each time you want to make direct use of the functions or data they contain. This document will not detail the workings of each package, but such information can be found online, for example <a href="https://pandas.pydata.org">here</a> is the website for the <code>Python</code> ‘pandas’ package.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="are-spreadsheets-safe" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="are-spreadsheets-safe"><span class="header-section-number">1.2</span> Are spreadsheets safe?</h2>
+<p>In addition, some statistical models that have been written in the probabilistic programming language <code>Stan</code> have been used. The data used in the examples, as well as the code used for each exercise can be freely downloaded from this <a href="https://github.com/DomDF/DCE_guidance">public Github repository</a>.</p>
+<p>Such calculations could also be performed using spreadsheet software. The primary reasons for not providing accompanying spreadsheet files to run the example calculations, are as follows:</p>
+<ul>
+<li>When running challenging simulations, or working with large amounts of data, spreadsheets may become unmanageably slow.</li>
+<li>Spreadsheet software has reproducibility challenges. Data can be difficult to distinguish from calculated quantities, and the sequence of calculations can also be difficult to identify.</li>
+<li>Calculations using spreadsheets are often unreliable. Errors <em>arise</em> in spreadsheets for many reasons, such as obscuring (or deleting) data, incorrect assumptions regarding data types, uninterpretable functions, and automatic filling. Errors often <em>remain</em> in spreadsheets due to the challenges associated with testing, documenting and version control.</li>
+</ul>
+<p>Some notable examples of high consequence spreadsheet errors are recorded by the European Spreadsheet Risks Interest Group <a href="http://www.eusprig.org">(EuSpRiG)</a> and further discussion on the incompatibility of spreadsheets and good data management (in the context of research) can be found in a presentation from Monash University, <a href="https://www.youtube.com/watch?v=-NuTlczV72Q&amp;t=35s">here</a>.</p>
+<p>*Show (for 1 example) how this would be done in Excel.</p>
+<p>Things to add: - slow (especially with large data sets) - limited tools - reproducibile workflow - may be difficult to send work from Excel -&gt; Googgle sheets - libraries vs.&nbsp;add-ons - limited visualisations - modern data analysis and modelling worlkflows (standardised libraries) are built for programming languages - Python, R, Julia -&gt; Spreadsheet (but not the other way around) if your manager wants results in a spreadsheet - scaling workflows - Python, R, Julia are free - is inertia a good enough reason to continue to use spreadsheets?</p>
+<ul>
+<li><p>spreadsheets are legacy software, holding you back!</p></li>
+<li><p>Migration from spreadsheets to DCE is coming. Early adopters will get ahead.</p></li>
+<li></li>
+</ul>
+</section>
+</section>
+<section id="scope-of-course" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Scope of course</h1>
+<p>We will work through common workflows designed around analysing engineering data. Attendees will learn how to perform calculations in a reproduceable way using modern programming languages and libraries. Probabilistic programming will be introduced so that uncertainty can be quantified in engineering calculations.</p>
+<p>We will introduce principles of uncertainty emphasising its importance how it relates to engineering challenges. and leaving behind the one-answer mode of thinking. Instead we show on practical examples how thinking in terms of distributions can benefit data analysis and foster confidence in predictions.</p>
+<p>Attendees will have the opportunity to ask questions to the expert instructors. Attendees will be introduced to modern computational statistics (generative models rather than the content you’ll find in outdated textbooks). Attendees will learn new tools and techniques that will help them in their day-to-day work. Upskilling in the field of data-centric engineering.</p>
+<p>The benefits of migrating from legacy spreadsheet-dominated workflow to modern jupyter-based workflow will be highlighted through implementation of commonly encountered data analysis tasks, such as PCA, clustering, regression and classification.</p>
+</section>
+<section id="the-instructors" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> The instructors</h1>
+<p>Andrew Duncan? Adam Sobey? Dom Di Francesco, Peter Yatsyshin</p>
+<p>email to adam - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform). We are in conversations with Hariett M. + Katy H. &amp; Gabin Kayumbi. - The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).</p>
+<p>Course overview: Who is this course for? Learning outcomes: License: course materials will be hosted on GitHub</p>
+<!-- -->
+
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data-Centric Engineering"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Introduction to engineering data analysis and reproducible workflows"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Domenic Di Francesco, PhD, CEng"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "November 2022"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    knitr: true </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">      - simplex</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: atom-one</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-mathod: mathjax</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    # toc-location: top</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: scroll</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">    monofont: Fira Code</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">    mermaid:</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">      theme: forest</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># bibliography: references.bib</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to use this document</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>This is a computational document that includes chunks of <span class="in">`Python`</span>, <span class="in">`R`</span>, and <span class="in">`Julia`</span> code necessary to analyse the data, and solve the decision problems in the various examples. To achieve this, various libraries/packages have been used, and these will need to be installed and loaded for the code to run.</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>::: {#chunk_load_packages .panel-tabset}</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Python Packages</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cmdstanpy, requests, os, multiprocessing, math</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Julia Packages</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>using CSV, DataFrames, DataFramesMeta, Printf</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>using Random, Distributions, Bootstrap, Copulas, LatinHypercubeSampling</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>using JuMP, HiGHS, DecisionProgramming, Turing, LinearAlgebra</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip collapse="true"}</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tip: Loading packages</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>In <span class="in">`R`</span>, <span class="in">`Python`</span> and <span class="in">`Julia`</span> packages first need to be installed. Guidance on installing packages can be found <span class="co">[</span><span class="ot">here</span><span class="co">](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)</span> (for <span class="in">`R`</span>),  <span class="co">[</span><span class="ot">here</span><span class="co">](https://pypi.org/project/pip/)</span> (for <span class="in">`Python`</span>), and <span class="co">[</span><span class="ot">here</span><span class="co">](https://docs.julialang.org/en/v1/stdlib/Pkg/)</span> for <span class="in">`Julia`</span>. </span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>Packages only need to be installed once (unless they are uninstalled), but then need to be loaded each time you want to make direct use of the functions or data they contain. This document will not detail the workings of each package, but such information can be found online, for example <span class="co">[</span><span class="ot">here</span><span class="co">](https://pandas.pydata.org)</span> is the website for the <span class="in">`Python`</span> 'pandas' package.</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Are spreadsheets safe?</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>In addition, some statistical models that have been written in the probabilistic programming language <span class="in">`Stan`</span> have been used. The data used in the examples, as well as the code used for each exercise can be freely downloaded from this <span class="co">[</span><span class="ot">public Github repository</span><span class="co">](https://github.com/DomDF/DCE_guidance)</span>.</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>Such calculations could also be performed using spreadsheet software. The primary reasons for not providing accompanying spreadsheet files to run the example calculations, are as follows:</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>When running challenging simulations, or working with large amounts of data, spreadsheets may become unmanageably slow.</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Spreadsheet software has reproducibility challenges. Data can be difficult to distinguish from calculated quantities, and the sequence of calculations can also be difficult to identify. </span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Calculations using spreadsheets are often unreliable. Errors *arise* in spreadsheets for many reasons, such as obscuring (or deleting) data, incorrect assumptions regarding data types, uninterpretable functions, and automatic filling. Errors often *remain* in spreadsheets due to the challenges associated with testing, documenting and version control.</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>Some notable examples of high consequence spreadsheet errors are recorded by the European Spreadsheet Risks Interest Group <span class="co">[</span><span class="ot">(EuSpRiG)</span><span class="co">](http://www.eusprig.org)</span> and further discussion on the incompatibility of spreadsheets and good data management (in the context of research) can be found in a presentation from Monash University, <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.youtube.com/watch?v=-NuTlczV72Q&amp;t=35s)</span>.</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>*Show (for 1 example) how this would be done in Excel.</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>Things to add: </span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>slow (especially with large data sets)</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>limited tools</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>reproducibile workflow</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>may be difficult to send work from Excel -&gt; Googgle sheets</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>libraries vs. add-ons</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>limited visualisations</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>modern data analysis and modelling worlkflows (standardised libraries) are built for programming languages</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Python, R, Julia -&gt; Spreadsheet (but not the other way around) if your manager wants results in a spreadsheet</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>scaling workflows</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Python, R, Julia are free</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>is inertia a good enough reason to continue to use spreadsheets? </span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>spreadsheets are legacy software, holding you back!</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Migration from spreadsheets to DCE is coming. Early adopters will get ahead.</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>*</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="fu"># Scope of course</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>We will work through common workflows designed around analysing engineering data.</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>Attendees will learn how to perform calculations in a reproduceable way using modern programming languages and libraries.</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>Probabilistic programming will be introduced so that uncertainty can be quantified in engineering calculations.</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>We will introduce principles of uncertainty emphasising its importance how it relates to engineering challenges. </span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>and leaving behind the one-answer mode of thinking. Instead we show on practical examples how thinking in terms of distributions can benefit data analysis and foster confidence in predictions.</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>Attendees will have the opportunity to ask questions to the expert instructors.</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>Attendees will be introduced to modern computational statistics (generative models rather than the content you'll find in outdated textbooks).</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>Attendees will learn new tools and techniques that will help them in their day-to-day work. Upskilling in the field of data-centric engineering.</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>The benefits of migrating from legacy spreadsheet-dominated workflow to modern jupyter-based workflow will be highlighted through implementation of commonly encountered data analysis tasks, such as PCA, clustering, regression and classification.</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="fu"># The instructors</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>Andrew Duncan? Adam Sobey? Dom Di Francesco, Peter Yatsyshin</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>email to adam</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>  We are in conversations with Hariett M. + Katy H. &amp; Gabin Kayumbi.</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>Course overview:</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>Who is this course for?</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>Learning outcomes:</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>License: course materials will be hosted on GitHub</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

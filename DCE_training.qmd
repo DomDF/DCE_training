@@ -1,0 +1,126 @@
+---
+title: "Data-Centric Engineering"
+subtitle: "Introduction to engineering data analysis and reproducible workflows"
+author: "Domenic Di Francesco, PhD, CEng"
+date: "November 2022"
+format:
+  html:
+    knitr: true 
+    theme: 
+      - simplex
+    highlight-style: atom-one
+    html-math-mathod: mathjax
+    toc: true
+    # toc-location: top
+    number-sections: true
+    code-copy: true
+    code-fold: true
+    code-tools: true
+    code-overflow: scroll
+    monofont: Fira Code
+    mermaid:
+      theme: forest
+execute:
+  message: false
+  warning: false
+# bibliography: references.bib
+---
+
+# Introduction
+
+
+
+## How to use this document
+
+This is a computational document that includes chunks of `Python`, `R`, and `Julia` code necessary to analyse the data, and solve the decision problems in the various examples. To achieve this, various libraries/packages have been used, and these will need to be installed and loaded for the code to run.
+
+::: {#chunk_load_packages .panel-tabset}
+## Load Python Packages
+
+```{python}
+import cmdstanpy, requests, os, multiprocessing, math
+import numpy as np, pandas as pd
+from scipy import stats
+
+```
+
+
+## Load Julia Packages
+
+```{julia}
+using CSV, DataFrames, DataFramesMeta, Printf
+using Random, Distributions, Bootstrap, Copulas, LatinHypercubeSampling
+using JuMP, HiGHS, DecisionProgramming, Turing, LinearAlgebra
+
+```
+
+:::
+
+:::{.callout-tip collapse="true"}
+## Tip: Loading packages
+In `R`, `Python` and `Julia` packages first need to be installed. Guidance on installing packages can be found [here](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages) (for `R`),  [here](https://pypi.org/project/pip/) (for `Python`), and [here](https://docs.julialang.org/en/v1/stdlib/Pkg/) for `Julia`. 
+
+Packages only need to be installed once (unless they are uninstalled), but then need to be loaded each time you want to make direct use of the functions or data they contain. This document will not detail the workings of each package, but such information can be found online, for example [here](https://pandas.pydata.org) is the website for the `Python` 'pandas' package.
+:::
+
+## Are spreadsheets safe?
+
+In addition, some statistical models that have been written in the probabilistic programming language `Stan` have been used. The data used in the examples, as well as the code used for each exercise can be freely downloaded from this [public Github repository](https://github.com/DomDF/DCE_guidance).
+
+Such calculations could also be performed using spreadsheet software. The primary reasons for not providing accompanying spreadsheet files to run the example calculations, are as follows:
+
+ - When running challenging simulations, or working with large amounts of data, spreadsheets may become unmanageably slow.
+ - Spreadsheet software has reproducibility challenges. Data can be difficult to distinguish from calculated quantities, and the sequence of calculations can also be difficult to identify. 
+ - Calculations using spreadsheets are often unreliable. Errors *arise* in spreadsheets for many reasons, such as obscuring (or deleting) data, incorrect assumptions regarding data types, uninterpretable functions, and automatic filling. Errors often *remain* in spreadsheets due to the challenges associated with testing, documenting and version control.
+
+Some notable examples of high consequence spreadsheet errors are recorded by the European Spreadsheet Risks Interest Group [(EuSpRiG)](http://www.eusprig.org) and further discussion on the incompatibility of spreadsheets and good data management (in the context of research) can be found in a presentation from Monash University, [here](https://www.youtube.com/watch?v=-NuTlczV72Q&t=35s).
+
+*Show (for 1 example) how this would be done in Excel.
+
+Things to add: 
+ - slow (especially with large data sets)
+ - limited tools
+ - reproducibile workflow
+ - may be difficult to send work from Excel -> Googgle sheets
+ - libraries vs. add-ons
+ - limited visualisations
+ - modern data analysis and modelling worlkflows (standardised libraries) are built for programming languages
+ - Python, R, Julia -> Spreadsheet (but not the other way around) if your manager wants results in a spreadsheet
+ - scaling workflows
+ - Python, R, Julia are free
+ - is inertia a good enough reason to continue to use spreadsheets? 
+ 
+ - spreadsheets are legacy software, holding you back!
+
+ - Migration from spreadsheets to DCE is coming. Early adopters will get ahead.
+*
+
+# Scope of course
+
+We will work through common workflows designed around analysing engineering data.
+Attendees will learn how to perform calculations in a reproduceable way using modern programming languages and libraries.
+Probabilistic programming will be introduced so that uncertainty can be quantified in engineering calculations.
+
+We will introduce principles of uncertainty emphasising its importance how it relates to engineering challenges. 
+and leaving behind the one-answer mode of thinking. Instead we show on practical examples how thinking in terms of distributions can benefit data analysis and foster confidence in predictions.
+
+Attendees will have the opportunity to ask questions to the expert instructors.
+Attendees will be introduced to modern computational statistics (generative models rather than the content you'll find in outdated textbooks).
+Attendees will learn new tools and techniques that will help them in their day-to-day work. Upskilling in the field of data-centric engineering.
+
+The benefits of migrating from legacy spreadsheet-dominated workflow to modern jupyter-based workflow will be highlighted through implementation of commonly encountered data analysis tasks, such as PCA, clustering, regression and classification.
+
+
+# The instructors
+
+Andrew Duncan? Adam Sobey? Dom Di Francesco, Peter Yatsyshin
+
+email to adam
+  - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).
+  We are in conversations with Hariett M. + Katy H. & Gabin Kayumbi.
+  - The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).
+
+Course overview:
+Who is this course for?
+Learning outcomes:
+License: course materials will be hosted on GitHub
