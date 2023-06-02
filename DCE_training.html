@@ -99,6 +99,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="DCE_training_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="DCE_training_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -117,6 +118,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#scope-of-course" id="toc-scope-of-course" class="nav-link" data-scroll-target="#scope-of-course"><span class="toc-section-number">2</span>  Scope of course</a></li>
   <li><a href="#the-instructors" id="toc-the-instructors" class="nav-link" data-scroll-target="#the-instructors"><span class="toc-section-number">3</span>  The instructors</a></li>
+  <li><a href="#example-analysis-of-material-test-data" id="toc-example-analysis-of-material-test-data" class="nav-link" data-scroll-target="#example-analysis-of-material-test-data"><span class="toc-section-number">4</span>  Example: Analysis of material test data</a></li>
   </ul>
 </nav>
 </div>
@@ -224,9 +226,65 @@ Tip: Loading packages
 </section>
 <section id="the-instructors" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> The instructors</h1>
-<p>Andrew Duncan? Adam Sobey? Dom Di Francesco, Peter Yatsyshin</p>
-<p>email to adam - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform). We are in conversations with Hariett M. + Katy H. &amp; Gabin Kayumbi. - The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).</p>
-<p>Course overview: Who is this course for? Learning outcomes: License: course materials will be hosted on GitHub</p>
+<p><a href="https://www.ma.imperial.ac.uk/~aduncan/">Andrew Duncan, PhD</a></p>
+<p>Andrew is a senior lecturer in statistics and data-centric engineering at Imperial college London and previously led the data-centric engineering programme at the Alan Turing Institute. He is an expert in uncertainty quantification, big data environments, DevOps, MLOps and web services. He has previously supported many large industrial projects across engineering sectors, including energy, aerospace, and maritime.</p>
+<p><a href="https://www.turing.ac.uk/people/researchers/adam-sobey">Professor Adam Sobey, PhD</a></p>
+<p>Adam Sobey is an Associate Professor in the Maritime Engineering group at the University of Southampton, Group Lead for Marine and Maritime in the Data-Centric Engineering Programme of The Alan Turing Institute. His work in maritime engineering was incorpoertated into Lloyd’s Register’s design guidance.</p>
+<p><a href="https://www.turing.ac.uk/people/researchers/domenic-di-francesco">Domenic Di Francesco, PhD, CEng(MIMechE)</a></p>
+<p>Domenic worked in the energy industry becoming a chartered mechanical engineer before completing his PhD in computational statistics. He is now a research fellow at the Alan Turing Institute and a visiting researcher at Cambridge Univeristy, with expertise in decision making under uncertainty and data-centric engineering.</p>
+<p><a href="">Peter Yatsyshin, PhD</a></p>
+<p>Peter…</p>
+<!-- email to adam
+  - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).
+  We are in conversations with Hariett M. + Katy H. & Gabin Kayumbi.
+  - The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).
+
+Course overview:
+Who is this course for?
+Learning outcomes:
+License: course materials will be hosted on GitHub -->
+</section>
+<section id="example-analysis-of-material-test-data" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Example: Analysis of material test data</h1>
+<p>Material testing has been completed for a new constructrion project. There are <span class="math inline">\(5\)</span> measurements of material toughness. These values meet the contractual requirements, and so have been accepted.</p>
+<div class="callout callout-style-default callout-note callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Challenges
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How can the data be analysed to answer the following questions:</p>
+<ul>
+<li>What value of toughness should be used in calculations?
+<ul>
+<li>What are the industry standard approaches to find this value?</li>
+<li>What are some alternative approaches?</li>
+</ul></li>
+<li>How can we analyse the data to obtain a probabilistic estimate of the toughness?
+<ul>
+<li>How can we fit a probabilistic model in Excel?</li>
+<li>How can we fit a probabilistic model in <code>R</code>, <code>Python</code> and <code>Julia</code>, and why should we consider doing this?</li>
+<li>How can we also account for statistical (epistemic) uncertainty by using probabilistic programming?</li>
+<li>How can we give the model a helpful starting point (prior) to further improve predictions?</li>
+<li>The vendor has provided some measurement uncertainty - how can we incorporate this into our calculation?</li>
+</ul></li>
+<li>A new use case has been proposed, requiring a toughness of <span class="math inline">\(90 MPa \cdot m^{1/2}\)</span>. The engineering team have been asked whether it is safe to use the material. How can we answer this question?
+<ul>
+<li>How can we decide whether more testing is required?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<p>This example will discuss the merits and challenges of different tools and methods, including:</p>
+<ul>
+<li>maximum likelihood estimation</li>
+<li>Bayesian inference</li>
+<li>value of information analysis.</li>
+</ul>
 <!-- -->
 
 </section>
@@ -618,17 +676,61 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="fu"># The instructors</span></span>
 <span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>Andrew Duncan? Adam Sobey? Dom Di Francesco, Peter Yatsyshin</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Andrew Duncan, PhD</span><span class="co">](https://www.ma.imperial.ac.uk/~aduncan/)</span></span>
 <span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>email to adam</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>  We are in conversations with Hariett M. + Katy H. &amp; Gabin Kayumbi.</span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).</span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>Course overview:</span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>Who is this course for?</span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>Learning outcomes:</span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>License: course materials will be hosted on GitHub</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>Andrew is a senior lecturer in statistics and data-centric engineering at Imperial college London and previously led the data-centric engineering programme at the Alan Turing Institute. He is an expert in uncertainty quantification, big data environments, DevOps, MLOps and web services. He has previously supported many large industrial projects across engineering sectors, including energy, aerospace, and maritime.</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Professor Adam Sobey, PhD</span><span class="co">](https://www.turing.ac.uk/people/researchers/adam-sobey)</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>Adam Sobey is an Associate Professor in the Maritime Engineering group at the University of Southampton, Group Lead for Marine and Maritime in the Data-Centric Engineering Programme of The Alan Turing Institute. His work in maritime engineering was incorpoertated into Lloyd's Register's design guidance.</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Domenic Di Francesco, PhD, CEng(MIMechE)</span><span class="co">](https://www.turing.ac.uk/people/researchers/domenic-di-francesco)</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>Domenic worked in the energy industry becoming a chartered mechanical engineer before completing his PhD in computational statistics. He is now a research fellow at the Alan Turing Institute and a visiting researcher at Cambridge Univeristy, with expertise in decision making under uncertainty and data-centric engineering.</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Peter Yatsyshin, PhD</span><span class="co">]()</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>Peter...</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- email to adam</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="co">  - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="co">  We are in conversations with Hariett M. + Katy H. &amp; Gabin Kayumbi.</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="co">  - The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="co">Course overview:</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="co">Who is this course for?</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="co">Learning outcomes:</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="co">License: course materials will be hosted on GitHub --&gt;</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="fu"># Example: Analysis of material test data</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>Material testing has been completed for a new constructrion project. There are $5$ measurements of material toughness. These values meet the contractual requirements, and so have been accepted.</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenges</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>How can the data be analysed to answer the following questions:</span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>What value of toughness should be used in calculations?</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>What are the industry standard approaches to find this value?</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>What are some alternative approaches?</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>How can we analyse the data to obtain a probabilistic estimate of the toughness?</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we fit a probabilistic model in Excel?</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we fit a probabilistic model in <span class="in">`R`</span>, <span class="in">`Python`</span> and <span class="in">`Julia`</span>, and why should we consider doing this?</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we also account for statistical (epistemic) uncertainty by using probabilistic programming?</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we give the model a helpful starting point (prior) to further improve predictions?</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The vendor has provided some measurement uncertainty - how can we incorporate this into our calculation?</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A new use case has been proposed, requiring a toughness of $90 MPa \cdot m^{1/2}$. The engineering team have been asked whether it is safe to use the material. How can we answer this question?</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we decide whether more testing is required?</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>This example will discuss the merits and challenges of different tools and methods, including:</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>maximum likelihood estimation</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Bayesian inference</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>value of information analysis.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

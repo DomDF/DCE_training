@@ -113,9 +113,24 @@ The benefits of migrating from legacy spreadsheet-dominated workflow to modern j
 
 # The instructors
 
-Andrew Duncan? Adam Sobey? Dom Di Francesco, Peter Yatsyshin
+[Andrew Duncan, PhD](https://www.ma.imperial.ac.uk/~aduncan/)
 
-email to adam
+Andrew is a senior lecturer in statistics and data-centric engineering at Imperial college London and previously led the data-centric engineering programme at the Alan Turing Institute. He is an expert in uncertainty quantification, big data environments, DevOps, MLOps and web services. He has previously supported many large industrial projects across engineering sectors, including energy, aerospace, and maritime.
+
+[Professor Adam Sobey, PhD](https://www.turing.ac.uk/people/researchers/adam-sobey)
+
+Adam Sobey is an Associate Professor in the Maritime Engineering group at the University of Southampton, Group Lead for Marine and Maritime in the Data-Centric Engineering Programme of The Alan Turing Institute. His work in maritime engineering was incorpoertated into Lloyd's Register's design guidance.
+
+[Domenic Di Francesco, PhD, CEng(MIMechE)](https://www.turing.ac.uk/people/researchers/domenic-di-francesco)
+
+Domenic worked in the energy industry becoming a chartered mechanical engineer before completing his PhD in computational statistics. He is now a research fellow at the Alan Turing Institute and a visiting researcher at Cambridge Univeristy, with expertise in decision making under uncertainty and data-centric engineering.
+
+[Peter Yatsyshin, PhD]()
+
+Peter...
+
+
+<!-- email to adam
   - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).
   We are in conversations with Hariett M. + Katy H. & Gabin Kayumbi.
   - The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).
@@ -123,4 +138,33 @@ email to adam
 Course overview:
 Who is this course for?
 Learning outcomes:
-License: course materials will be hosted on GitHub
+License: course materials will be hosted on GitHub -->
+
+# Example: Analysis of material test data
+
+Material testing has been completed for a new constructrion project. There are $5$ measurements of material toughness. These values meet the contractual requirements, and so have been accepted.
+
+:::{.callout-note}
+## Challenges
+    
+How can the data be analysed to answer the following questions:
+
+ - What value of toughness should be used in calculations?
+    - What are the industry standard approaches to find this value?
+    - What are some alternative approaches?
+ - How can we analyse the data to obtain a probabilistic estimate of the toughness?
+     - How can we fit a probabilistic model in Excel?
+     - How can we fit a probabilistic model in `R`, `Python` and `Julia`, and why should we consider doing this?
+     - How can we also account for statistical (epistemic) uncertainty by using probabilistic programming?
+     - How can we give the model a helpful starting point (prior) to further improve predictions?
+    - The vendor has provided some measurement uncertainty - how can we incorporate this into our calculation?
+- A new use case has been proposed, requiring a toughness of $90 MPa \cdot m^{1/2}$. The engineering team have been asked whether it is safe to use the material. How can we answer this question?
+     - How can we decide whether more testing is required?
+
+:::
+
+This example will discuss the merits and challenges of different tools and methods, including:
+
+ - maximum likelihood estimation
+ - Bayesian inference
+ - value of information analysis.
