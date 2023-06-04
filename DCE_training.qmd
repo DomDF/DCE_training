@@ -127,7 +127,7 @@ Domenic worked in the energy industry becoming a chartered mechanical engineer b
 
 [Peter Yatsyshin, PhD]()
 
-Peter...
+Peter is a cross-disciplinary researcher with a track record of publications in machine learning, statistical physics and applied mathematics. He is an Alan Turing Research Fellow and an honorary research fellow at Imperial College London. Peter's experties lies in probabilistic physics-informed models, including uncertainty quantification in partial differential equaions, Bayesian inference, MCMC and variational inference.
 
 
 <!-- email to adam
