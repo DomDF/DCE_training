@@ -2,12 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.119">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Domenic Di Francesco, PhD, CEng">
-<meta name="dcterms.date" content="2022-11-01">
 
 <title>Data-Centric Engineering</title>
 <style>
@@ -19,10 +18,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,13 +47,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -70,8 +98,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="DCE_training_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="DCE_training_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -83,14 +109,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-  <li><a href="#how-to-use-this-document" id="toc-how-to-use-this-document" class="nav-link" data-scroll-target="#how-to-use-this-document"><span class="header-section-number">1.1</span> How to use this document</a></li>
-  <li><a href="#are-spreadsheets-safe" id="toc-are-spreadsheets-safe" class="nav-link" data-scroll-target="#are-spreadsheets-safe"><span class="header-section-number">1.2</span> Are spreadsheets safe?</a></li>
+  <li><a href="#course-materials" id="toc-course-materials" class="nav-link" data-scroll-target="#course-materials">Course materials</a></li>
   </ul></li>
-  <li><a href="#scope-of-course" id="toc-scope-of-course" class="nav-link" data-scroll-target="#scope-of-course"><span class="header-section-number">2</span> Scope of course</a></li>
-  <li><a href="#the-instructors" id="toc-the-instructors" class="nav-link" data-scroll-target="#the-instructors"><span class="header-section-number">3</span> The instructors</a></li>
-  <li><a href="#example-analysis-of-material-test-data" id="toc-example-analysis-of-material-test-data" class="nav-link" data-scroll-target="#example-analysis-of-material-test-data"><span class="header-section-number">4</span> Example: Analysis of material test data</a></li>
+  <li><a href="#course" id="toc-course" class="nav-link" data-scroll-target="#course">Course</a>
+  <ul class="collapse">
+  <li><a href="#scope" id="toc-scope" class="nav-link" data-scroll-target="#scope">Scope</a></li>
+  <li><a href="#a-note-on-spreadsheets" id="toc-a-note-on-spreadsheets" class="nav-link" data-scroll-target="#a-note-on-spreadsheets">A note on spreadsheets…</a></li>
+  </ul></li>
+  <li><a href="#instructors" id="toc-instructors" class="nav-link" data-scroll-target="#instructors">Instructors</a>
+  <ul class="collapse">
+  <li><a href="#example-analysis-of-material-test-data" id="toc-example-analysis-of-material-test-data" class="nav-link" data-scroll-target="#example-analysis-of-material-test-data">Example: Analysis of material test data</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -116,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 1, 2022</p>
+      <p class="date">Invalid Date</p>
     </div>
   </div>
   
@@ -126,38 +157,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<section id="how-to-use-this-document" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="how-to-use-this-document"><span class="header-section-number">1.1</span> How to use this document</h2>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<section id="course-materials" class="level2">
+<h2 class="anchored" data-anchor-id="course-materials">Course materials</h2>
 <p>This is a computational document that includes chunks of <code>Python</code>, <code>R</code>, and <code>Julia</code> code necessary to analyse the data, and solve the decision problems in the various examples. To achieve this, various libraries/packages have been used, and these will need to be installed and loaded for the code to run.</p>
-<div class="tabset-margin-container"></div><div id="chunk_load_packages" class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Load Python Packages</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Load Julia Packages</a></li></ul>
+<!-- ```{r}  
+# echo: false
+JuliaCall::julia_setup()
+```
+
+
+
+```{julia}
+# echo: false
+ENV["R_HOME"] = "/Library/Frameworks/R.framework/Resources"
+``` -->
+<div id="chunk_load_packages" class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Load Python Packages</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Load R Packages</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Load Julia Packages</a></li></ul>
 <div id="chunk_load_packages" class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cmdstanpy, requests, os, multiprocessing, math</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cmdstanpy, multiprocessing, math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<pre class="{julia}"><code>using CSV, DataFrames, DataFramesMeta, Printf
+<pre class="{r}"><code>library(tidyverse)
+library(copula); library(boot); library(lhs)
+library(cmdstanr)
+</code></pre>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<pre class="{julia}"><code>using CSV, DataFrames, DataFramesMeta, RCall, PyCall
 using Random, Distributions, Bootstrap, Copulas, LatinHypercubeSampling
 using JuMP, HiGHS, DecisionProgramming, Turing, LinearAlgebra
 </code></pre>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 Tip: Loading packages
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -170,34 +218,49 @@ Tip: Loading packages
 </div>
 </div>
 </section>
-<section id="are-spreadsheets-safe" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="are-spreadsheets-safe"><span class="header-section-number">1.2</span> Are spreadsheets safe?</h2>
-<p>In addition, some statistical models that have been written in the probabilistic programming language <code>Stan</code> have been used. The data used in the examples, as well as the code used for each exercise can be freely downloaded from this <a href="https://github.com/DomDF/DCE_guidance">public Github repository</a>.</p>
-<p>Such calculations could also be performed using spreadsheet software. The primary reasons for not providing accompanying spreadsheet files to run the example calculations, are as follows:</p>
-<ul>
-<li>When running challenging simulations, or working with large amounts of data, spreadsheets may become unmanageably slow.</li>
-<li>Spreadsheet software has reproducibility challenges. Data can be difficult to distinguish from calculated quantities, and the sequence of calculations can also be difficult to identify.</li>
-<li>Calculations using spreadsheets are often unreliable. Errors <em>arise</em> in spreadsheets for many reasons, such as obscuring (or deleting) data, incorrect assumptions regarding data types, uninterpretable functions, and automatic filling. Errors often <em>remain</em> in spreadsheets due to the challenges associated with testing, documenting and version control.</li>
-</ul>
-<p>Some notable examples of high consequence spreadsheet errors are recorded by the European Spreadsheet Risks Interest Group <a href="http://www.eusprig.org">(EuSpRiG)</a> and further discussion on the incompatibility of spreadsheets and good data management (in the context of research) can be found in a presentation from Monash University, <a href="https://www.youtube.com/watch?v=-NuTlczV72Q&amp;t=35s">here</a>.</p>
-<p>*Show (for 1 example) how this would be done in Excel.</p>
-<p>Things to add: - slow (especially with large data sets) - limited tools - reproducibile workflow - may be difficult to send work from Excel -&gt; Googgle sheets - libraries vs.&nbsp;add-ons - limited visualisations - modern data analysis and modelling worlkflows (standardised libraries) are built for programming languages - Python, R, Julia -&gt; Spreadsheet (but not the other way around) if your manager wants results in a spreadsheet - scaling workflows - Python, R, Julia are free - is inertia a good enough reason to continue to use spreadsheets?</p>
-<ul>
-<li><p>spreadsheets are legacy software, holding you back!</p></li>
-<li><p>Migration from spreadsheets to DCE is coming. Early adopters will get ahead.</p></li>
-<li></li>
-</ul>
 </section>
-</section>
-<section id="scope-of-course" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Scope of course</h1>
+<section id="course" class="level1">
+<h1>Course</h1>
+<section id="scope" class="level2">
+<h2 class="anchored" data-anchor-id="scope">Scope</h2>
 <p>We will work through common workflows designed around analysing engineering data. Attendees will learn how to perform calculations in a reproduceable way using modern programming languages and libraries. Probabilistic programming will be introduced so that uncertainty can be quantified in engineering calculations.</p>
 <p>We will introduce principles of uncertainty emphasising its importance how it relates to engineering challenges. and leaving behind the one-answer mode of thinking. Instead we show on practical examples how thinking in terms of distributions can benefit data analysis and foster confidence in predictions.</p>
 <p>Attendees will have the opportunity to ask questions to the expert instructors. Attendees will be introduced to modern computational statistics (generative models rather than the content you’ll find in outdated textbooks). Attendees will learn new tools and techniques that will help them in their day-to-day work. Upskilling in the field of data-centric engineering.</p>
 <p>The benefits of migrating from legacy spreadsheet-dominated workflow to modern jupyter-based workflow will be highlighted through implementation of commonly encountered data analysis tasks, such as PCA, clustering, regression and classification.</p>
 </section>
-<section id="the-instructors" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> The instructors</h1>
+<section id="a-note-on-spreadsheets" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-spreadsheets">A note on spreadsheets…</h2>
+<p>Engineering calculations are often performed using spreadsheet software. This course, however, will demonstrate how to perform engineering analysis using programming languages (and accompanying libraries). The primary reasons for this are as follows:</p>
+<ul>
+<li>When running challenging simulations, or working with large amounts of data, spreadsheets may become unmanageably slow.</li>
+<li>Spreadsheet software has reproducibility challenges. Data can be difficult to distinguish from calculated quantities, and the sequence of calculations can also be difficult to identify. Reproducable workflows are important for sharing work with colleagues, re-running calculations, and documenting that calculations have been performed correctly. The Alan Turing Institute has developed <a href="https://the-turing-way.netlify.app/index.html">The Turing Way</a>, which provides guidance on best practice for reproducible workflows.</li>
+<li>The software used in this course is all freely available and benefit from large user communities. Modern analysis tools are primarily developed (and maintained) for the programming languages rather than spreadsheets.</li>
+<li>Calculations using spreadsheets are often unreliable. Errors <em>arise</em> in spreadsheets for many reasons, such as obscuring (or deleting) data, incorrect assumptions regarding data types, uninterpretable functions, and automatic filling. Errors often <em>remain</em> in spreadsheets due to the challenges associated with testing, documenting and version control.</li>
+</ul>
+<p>Some notable examples of high consequence spreadsheet errors are recorded by the European Spreadsheet Risks Interest Group <a href="http://www.eusprig.org">(EuSpRiG)</a> and further discussion on the incompatibility of spreadsheets and good data management (in the context of research) can be found in a presentation from Monash University, <a href="https://www.youtube.com/watch?v=-NuTlczV72Q&amp;t=35s">here</a>.</p>
+<!-- *Show (for 1 example) how this would be done in Excel.
+
+Things to add: 
+ - slow (especially with large data sets)
+ - limited tools
+ - reproducibile workflow
+ - may be difficult to send work from Excel -> Googgle sheets
+ - libraries vs. add-ons
+ - limited visualisations
+ - modern data analysis and modelling worlkflows (standardised libraries) are built for programming languages
+ - Python, R, Julia -> Spreadsheet (but not the other way around) if your manager wants results in a spreadsheet
+ - scaling workflows
+ - Python, R, Julia are free
+ - is inertia a good enough reason to continue to use spreadsheets? 
+ 
+ - spreadsheets are legacy software, holding you back!
+
+ - Migration from spreadsheets to DCE is coming. Early adopters will get ahead.
+* -->
+</section>
+</section>
+<section id="instructors" class="level1">
+<h1>Instructors</h1>
 <p><a href="https://www.ma.imperial.ac.uk/~aduncan/">Andrew Duncan, PhD</a></p>
 <p>Andrew is a senior lecturer in statistics and data-centric engineering at Imperial college London and previously led the data-centric engineering programme at the Alan Turing Institute. He is an expert in uncertainty quantification, big data environments, DevOps, MLOps and web services. He has previously supported many large industrial projects across engineering sectors, including energy, aerospace, and maritime.</p>
 <p><a href="https://www.turing.ac.uk/people/researchers/adam-sobey">Professor Adam Sobey, PhD</a></p>
@@ -205,7 +268,7 @@ Tip: Loading packages
 <p><a href="https://www.turing.ac.uk/people/researchers/domenic-di-francesco">Domenic Di Francesco, PhD, CEng(MIMechE)</a></p>
 <p>Domenic worked in the energy industry becoming a chartered mechanical engineer before completing his PhD in computational statistics. He is now a research fellow at the Alan Turing Institute and a visiting researcher at Cambridge Univeristy, with expertise in decision making under uncertainty and data-centric engineering.</p>
 <p><a href="">Peter Yatsyshin, PhD</a></p>
-<p>Peter is a cross-disciplinary researcher with a track record of publications in machine learning, statistical physics and applied mathematics. He is an Alan Turing Research Fellow and an honorary research fellow at Imperial College London. Peter’s experties lies in probabilistic physics-informed models, including uncertainty quantification in partial differential equaions, Bayesian inference, MCMC and variational inference.</p>
+<p>Peter is a cross-disciplinary researcher and lecturer with publications in machine learning, statistical physics and applied mathematics. He is an Alan Turing Research Fellow and an honorary research fellow at Imperial College London. Peter is an expert in physics-informed models, uncertainty quantification, and differential equaions.</p>
 <!-- email to adam
   - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).
   We are in conversations with Hariett M. + Katy H. & Gabin Kayumbi.
@@ -215,16 +278,15 @@ Course overview:
 Who is this course for?
 Learning outcomes:
 License: course materials will be hosted on GitHub -->
-</section>
-<section id="example-analysis-of-material-test-data" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Example: Analysis of material test data</h1>
-<p>Material testing has been completed for a new constructrion project. There are <span class="math inline">\(5\)</span> measurements of material toughness. These values meet the contractual requirements, and so have been accepted.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="example-analysis-of-material-test-data" class="level2">
+<h2 class="anchored" data-anchor-id="example-analysis-of-material-test-data">Example: Analysis of material test data</h2>
+<p>Material testing has been completed for a new constructrion project. There are a limited number of measurements of material toughness. These values meet the contractual requirements, and so have been accepted.</p>
+<div class="callout callout-style-default callout-note callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 Challenges
 </div>
 </div>
@@ -244,7 +306,7 @@ Challenges
 <li>How can we give the model a helpful starting point (prior) to further improve predictions?</li>
 <li>The vendor has provided some measurement uncertainty - how can we incorporate this into our calculation?</li>
 </ul></li>
-<li>A new use case has been proposed, requiring a toughness of <span class="math inline">\(90 MPa \cdot m^{1/2}\)</span>. The engineering team have been asked whether it is safe to use the material. How can we answer this question?
+<li>A new use case has been proposed, requiring a new minimum toughness. The engineering team have been asked whether it is safe to use the material. How can we answer this question?
 <ul>
 <li>How can we decide whether more testing is required?</li>
 </ul></li>
@@ -259,6 +321,7 @@ Challenges
 </ul>
 <!-- -->
 
+</section>
 </section>
 
 </main>
@@ -290,23 +353,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -547,176 +596,192 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data-Centric Engineering"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Introduction to engineering data analysis and reproducible workflows"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Domenic Di Francesco, PhD, CEng"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "November 2022"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    knitr: true </span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: </span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">      - simplex</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: atom-one</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-mathod: mathjax</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    # toc-location: top</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: scroll</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">    monofont: Fira Code</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">    mermaid:</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">      theme: forest</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># bibliography: references.bib</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to use this document</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>This is a computational document that includes chunks of <span class="in">`Python`</span>, <span class="in">`R`</span>, and <span class="in">`Julia`</span> code necessary to analyse the data, and solve the decision problems in the various examples. To achieve this, various libraries/packages have been used, and these will need to be installed and loaded for the code to run.</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>::: {#chunk_load_packages .panel-tabset}</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Python Packages</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cmdstanpy, requests, os, multiprocessing, math</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Julia Packages</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>using CSV, DataFrames, DataFramesMeta, Printf</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>using Random, Distributions, Bootstrap, Copulas, LatinHypercubeSampling</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>using JuMP, HiGHS, DecisionProgramming, Turing, LinearAlgebra</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip collapse="true"}</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tip: Loading packages</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>In <span class="in">`R`</span>, <span class="in">`Python`</span> and <span class="in">`Julia`</span> packages first need to be installed. Guidance on installing packages can be found <span class="co">[</span><span class="ot">here</span><span class="co">](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)</span> (for <span class="in">`R`</span>),  <span class="co">[</span><span class="ot">here</span><span class="co">](https://pypi.org/project/pip/)</span> (for <span class="in">`Python`</span>), and <span class="co">[</span><span class="ot">here</span><span class="co">](https://docs.julialang.org/en/v1/stdlib/Pkg/)</span> for <span class="in">`Julia`</span>. </span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>Packages only need to be installed once (unless they are uninstalled), but then need to be loaded each time you want to make direct use of the functions or data they contain. This document will not detail the workings of each package, but such information can be found online, for example <span class="co">[</span><span class="ot">here</span><span class="co">](https://pandas.pydata.org)</span> is the website for the <span class="in">`Python`</span> 'pandas' package.</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Are spreadsheets safe?</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>In addition, some statistical models that have been written in the probabilistic programming language <span class="in">`Stan`</span> have been used. The data used in the examples, as well as the code used for each exercise can be freely downloaded from this <span class="co">[</span><span class="ot">public Github repository</span><span class="co">](https://github.com/DomDF/DCE_guidance)</span>.</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>Such calculations could also be performed using spreadsheet software. The primary reasons for not providing accompanying spreadsheet files to run the example calculations, are as follows:</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>When running challenging simulations, or working with large amounts of data, spreadsheets may become unmanageably slow.</span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Spreadsheet software has reproducibility challenges. Data can be difficult to distinguish from calculated quantities, and the sequence of calculations can also be difficult to identify. </span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Calculations using spreadsheets are often unreliable. Errors *arise* in spreadsheets for many reasons, such as obscuring (or deleting) data, incorrect assumptions regarding data types, uninterpretable functions, and automatic filling. Errors often *remain* in spreadsheets due to the challenges associated with testing, documenting and version control.</span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>Some notable examples of high consequence spreadsheet errors are recorded by the European Spreadsheet Risks Interest Group <span class="co">[</span><span class="ot">(EuSpRiG)</span><span class="co">](http://www.eusprig.org)</span> and further discussion on the incompatibility of spreadsheets and good data management (in the context of research) can be found in a presentation from Monash University, <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.youtube.com/watch?v=-NuTlczV72Q&amp;t=35s)</span>.</span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>*Show (for 1 example) how this would be done in Excel.</span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>Things to add: </span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>slow (especially with large data sets)</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>limited tools</span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>reproducibile workflow</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>may be difficult to send work from Excel -&gt; Googgle sheets</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>libraries vs. add-ons</span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>limited visualisations</span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>modern data analysis and modelling worlkflows (standardised libraries) are built for programming languages</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Python, R, Julia -&gt; Spreadsheet (but not the other way around) if your manager wants results in a spreadsheet</span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>scaling workflows</span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Python, R, Julia are free</span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>is inertia a good enough reason to continue to use spreadsheets? </span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>spreadsheets are legacy software, holding you back!</span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Migration from spreadsheets to DCE is coming. Early adopters will get ahead.</span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>*</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="fu"># Scope of course</span></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>We will work through common workflows designed around analysing engineering data.</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>Attendees will learn how to perform calculations in a reproduceable way using modern programming languages and libraries.</span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>Probabilistic programming will be introduced so that uncertainty can be quantified in engineering calculations.</span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>We will introduce principles of uncertainty emphasising its importance how it relates to engineering challenges. </span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>and leaving behind the one-answer mode of thinking. Instead we show on practical examples how thinking in terms of distributions can benefit data analysis and foster confidence in predictions.</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>Attendees will have the opportunity to ask questions to the expert instructors.</span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>Attendees will be introduced to modern computational statistics (generative models rather than the content you'll find in outdated textbooks).</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>Attendees will learn new tools and techniques that will help them in their day-to-day work. Upskilling in the field of data-centric engineering.</span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>The benefits of migrating from legacy spreadsheet-dominated workflow to modern jupyter-based workflow will be highlighted through implementation of commonly encountered data analysis tasks, such as PCA, clustering, regression and classification.</span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="fu"># The instructors</span></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Andrew Duncan, PhD</span><span class="co">](https://www.ma.imperial.ac.uk/~aduncan/)</span></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>Andrew is a senior lecturer in statistics and data-centric engineering at Imperial college London and previously led the data-centric engineering programme at the Alan Turing Institute. He is an expert in uncertainty quantification, big data environments, DevOps, MLOps and web services. He has previously supported many large industrial projects across engineering sectors, including energy, aerospace, and maritime.</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Professor Adam Sobey, PhD</span><span class="co">](https://www.turing.ac.uk/people/researchers/adam-sobey)</span></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>Adam Sobey is an Associate Professor in the Maritime Engineering group at the University of Southampton, Group Lead for Marine and Maritime in the Data-Centric Engineering Programme of The Alan Turing Institute. His work in maritime engineering was incorpoertated into Lloyd's Register's design guidance.</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Domenic Di Francesco, PhD, CEng(MIMechE)</span><span class="co">](https://www.turing.ac.uk/people/researchers/domenic-di-francesco)</span></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>Domenic worked in the energy industry becoming a chartered mechanical engineer before completing his PhD in computational statistics. He is now a research fellow at the Alan Turing Institute and a visiting researcher at Cambridge Univeristy, with expertise in decision making under uncertainty and data-centric engineering.</span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Peter Yatsyshin, PhD</span><span class="co">]()</span></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>Peter is a cross-disciplinary researcher with a track record of publications in machine learning, statistical physics and applied mathematics. He is an Alan Turing Research Fellow and an honorary research fellow at Imperial College London. Peter's experties lies in probabilistic physics-informed models, including uncertainty quantification in partial differential equaions, Bayesian inference, MCMC and variational inference.</span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- email to adam</span></span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="co">  - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).</span></span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="co">  We are in conversations with Hariett M. + Katy H. &amp; Gabin Kayumbi.</span></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="co">  - The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).</span></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="co">Course overview:</span></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="co">Who is this course for?</span></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="co">Learning outcomes:</span></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="co">License: course materials will be hosted on GitHub --&gt;</span></span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="fu"># Example: Analysis of material test data</span></span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>Material testing has been completed for a new constructrion project. There are $5$ measurements of material toughness. These values meet the contractual requirements, and so have been accepted.</span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenges</span></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>How can the data be analysed to answer the following questions:</span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>What value of toughness should be used in calculations?</span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>What are the industry standard approaches to find this value?</span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>What are some alternative approaches?</span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>How can we analyse the data to obtain a probabilistic estimate of the toughness?</span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we fit a probabilistic model in Excel?</span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we fit a probabilistic model in <span class="in">`R`</span>, <span class="in">`Python`</span> and <span class="in">`Julia`</span>, and why should we consider doing this?</span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we also account for statistical (epistemic) uncertainty by using probabilistic programming?</span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we give the model a helpful starting point (prior) to further improve predictions?</span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The vendor has provided some measurement uncertainty - how can we incorporate this into our calculation?</span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A new use case has been proposed, requiring a toughness of $90 MPa \cdot m^{1/2}$. The engineering team have been asked whether it is safe to use the material. How can we answer this question?</span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we decide whether more testing is required?</span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>This example will discuss the merits and challenges of different tools and methods, including:</span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>maximum likelihood estimation</span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Bayesian inference</span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>value of information analysis.</span>
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data-Centric Engineering"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Introduction to engineering data analysis and reproducible workflows"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Domenic Di Francesco, PhD, CEng"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "Dates TBC"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    # knitr: true</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: </span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">      - simplex</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: atom-one</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-mathod: mathjax</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: scroll</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">    monofont: Fira Code</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Course materials</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>This is a computational document that includes chunks of <span class="in">`Python`</span>, <span class="in">`R`</span>, and <span class="in">`Julia`</span> code necessary to analyse the data, and solve the decision problems in the various examples. To achieve this, various libraries/packages have been used, and these will need to be installed and loaded for the code to run.</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r}  </span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># echo: false</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">JuliaCall::julia_setup()</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">```</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># echo: false</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co">ENV["R_HOME"] = "/Library/Frameworks/R.framework/Resources"</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co">``` --&gt;</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>::: {#chunk_load_packages .panel-tabset}</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Python Packages</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cmdstanpy, multiprocessing, math</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load R Packages</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copula); <span class="fu">library</span>(boot); <span class="fu">library</span>(lhs)</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cmdstanr)</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Julia Packages</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>using CSV, DataFrames, DataFramesMeta, RCall, PyCall</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>using Random, Distributions, Bootstrap, Copulas, LatinHypercubeSampling</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>using JuMP, HiGHS, DecisionProgramming, Turing, LinearAlgebra</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip collapse="true"}</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tip: Loading packages</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>In <span class="in">`R`</span>, <span class="in">`Python`</span> and <span class="in">`Julia`</span> packages first need to be installed. Guidance on installing packages can be found <span class="co">[</span><span class="ot">here</span><span class="co">](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)</span> (for <span class="in">`R`</span>),  <span class="co">[</span><span class="ot">here</span><span class="co">](https://pypi.org/project/pip/)</span> (for <span class="in">`Python`</span>), and <span class="co">[</span><span class="ot">here</span><span class="co">](https://docs.julialang.org/en/v1/stdlib/Pkg/)</span> for <span class="in">`Julia`</span>. </span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>Packages only need to be installed once (unless they are uninstalled), but then need to be loaded each time you want to make direct use of the functions or data they contain. This document will not detail the workings of each package, but such information can be found online, for example <span class="co">[</span><span class="ot">here</span><span class="co">](https://pandas.pydata.org)</span> is the website for the <span class="in">`Python`</span> 'pandas' package.</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="fu"># Course</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## Scope</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>We will work through common workflows designed around analysing engineering data.</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>Attendees will learn how to perform calculations in a reproduceable way using modern programming languages and libraries.</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>Probabilistic programming will be introduced so that uncertainty can be quantified in engineering calculations.</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>We will introduce principles of uncertainty emphasising its importance how it relates to engineering challenges. </span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>and leaving behind the one-answer mode of thinking. Instead we show on practical examples how thinking in terms of distributions can benefit data analysis and foster confidence in predictions.</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>Attendees will have the opportunity to ask questions to the expert instructors.</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>Attendees will be introduced to modern computational statistics (generative models rather than the content you'll find in outdated textbooks).</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>Attendees will learn new tools and techniques that will help them in their day-to-day work. Upskilling in the field of data-centric engineering.</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>The benefits of migrating from legacy spreadsheet-dominated workflow to modern jupyter-based workflow will be highlighted through implementation of commonly encountered data analysis tasks, such as PCA, clustering, regression and classification.</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## A note on spreadsheets...</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>Engineering calculations are often performed using spreadsheet software. This course, however, will demonstrate how to perform engineering analysis using programming languages (and accompanying libraries). The primary reasons for this are as follows:</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>When running challenging simulations, or working with large amounts of data, spreadsheets may become unmanageably slow.</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Spreadsheet software has reproducibility challenges. Data can be difficult to distinguish from calculated quantities, and the sequence of calculations can also be difficult to identify. Reproducable workflows are important for sharing work with colleagues, re-running calculations, and documenting that calculations have been performed correctly. The Alan Turing Institute has developed <span class="co">[</span><span class="ot">The Turing Way</span><span class="co">](https://the-turing-way.netlify.app/index.html)</span>, which provides guidance on best practice for reproducible workflows. </span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>The software used in this course is all freely available and benefit from large user communities. Modern analysis tools are primarily developed (and maintained) for the programming languages rather than spreadsheets. </span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Calculations using spreadsheets are often unreliable. Errors *arise* in spreadsheets for many reasons, such as obscuring (or deleting) data, incorrect assumptions regarding data types, uninterpretable functions, and automatic filling. Errors often *remain* in spreadsheets due to the challenges associated with testing, documenting and version control.</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>Some notable examples of high consequence spreadsheet errors are recorded by the European Spreadsheet Risks Interest Group <span class="co">[</span><span class="ot">(EuSpRiG)</span><span class="co">](http://www.eusprig.org)</span> and further discussion on the incompatibility of spreadsheets and good data management (in the context of research) can be found in a presentation from Monash University, <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.youtube.com/watch?v=-NuTlczV72Q&amp;t=35s)</span>.</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- *Show (for 1 example) how this would be done in Excel.</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="co">Things to add: </span></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="co"> - slow (especially with large data sets)</span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="co"> - limited tools</span></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="co"> - reproducibile workflow</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="co"> - may be difficult to send work from Excel -&gt; Googgle sheets</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="co"> - libraries vs. add-ons</span></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="co"> - limited visualisations</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="co"> - modern data analysis and modelling worlkflows (standardised libraries) are built for programming languages</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="co"> - Python, R, Julia -&gt; Spreadsheet (but not the other way around) if your manager wants results in a spreadsheet</span></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="co"> - scaling workflows</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="co"> - Python, R, Julia are free</span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="co"> - is inertia a good enough reason to continue to use spreadsheets? </span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="co"> </span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="co"> - spreadsheets are legacy software, holding you back!</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="co"> - Migration from spreadsheets to DCE is coming. Early adopters will get ahead.</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="co">* --&gt;</span></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="fu"># Instructors</span></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Andrew Duncan, PhD</span><span class="co">](https://www.ma.imperial.ac.uk/~aduncan/)</span></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>Andrew is a senior lecturer in statistics and data-centric engineering at Imperial college London and previously led the data-centric engineering programme at the Alan Turing Institute. He is an expert in uncertainty quantification, big data environments, DevOps, MLOps and web services. He has previously supported many large industrial projects across engineering sectors, including energy, aerospace, and maritime.</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Professor Adam Sobey, PhD</span><span class="co">](https://www.turing.ac.uk/people/researchers/adam-sobey)</span></span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>Adam Sobey is an Associate Professor in the Maritime Engineering group at the University of Southampton, Group Lead for Marine and Maritime in the Data-Centric Engineering Programme of The Alan Turing Institute. His work in maritime engineering was incorpoertated into Lloyd's Register's design guidance.</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Domenic Di Francesco, PhD, CEng(MIMechE)</span><span class="co">](https://www.turing.ac.uk/people/researchers/domenic-di-francesco)</span></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>Domenic worked in the energy industry becoming a chartered mechanical engineer before completing his PhD in computational statistics. He is now a research fellow at the Alan Turing Institute and a visiting researcher at Cambridge Univeristy, with expertise in decision making under uncertainty and data-centric engineering.</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Peter Yatsyshin, PhD</span><span class="co">]()</span></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>Peter is a cross-disciplinary researcher and lecturer with publications in machine learning, statistical physics and applied mathematics. He is an Alan Turing Research Fellow and an honorary research fellow at Imperial College London. Peter is an expert in physics-informed models, uncertainty quantification, and differential equaions.</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- email to adam</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="co">  - building on template developed by previous Turing training endeavours (such as those developed for the online learning platform).</span></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="co">  We are in conversations with Hariett M. + Katy H. &amp; Gabin Kayumbi.</span></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="co">  - The course can be developed as a 1 day, 2 day, or 3 day course (or even different variants).</span></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="co">Course overview:</span></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="co">Who is this course for?</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="co">Learning outcomes:</span></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="co">License: course materials will be hosted on GitHub --&gt;</span></span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example: Analysis of material test data</span></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>Material testing has been completed for a new constructrion project. There are a limited number of measurements of material toughness. These values meet the contractual requirements, and so have been accepted.</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenges</span></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>How can the data be analysed to answer the following questions:</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>What value of toughness should be used in calculations?</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>What are the industry standard approaches to find this value?</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>What are some alternative approaches?</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>How can we analyse the data to obtain a probabilistic estimate of the toughness?</span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we fit a probabilistic model in Excel?</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we fit a probabilistic model in <span class="in">`R`</span>, <span class="in">`Python`</span> and <span class="in">`Julia`</span>, and why should we consider doing this?</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we also account for statistical (epistemic) uncertainty by using probabilistic programming?</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we give the model a helpful starting point (prior) to further improve predictions?</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>The vendor has provided some measurement uncertainty - how can we incorporate this into our calculation?</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A new use case has been proposed, requiring a new minimum toughness. The engineering team have been asked whether it is safe to use the material. How can we answer this question?</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>How can we decide whether more testing is required?</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>This example will discuss the merits and challenges of different tools and methods, including:</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>maximum likelihood estimation</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>Bayesian inference</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>value of information analysis.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
