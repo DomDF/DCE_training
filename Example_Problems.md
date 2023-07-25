@@ -2,6 +2,15 @@
 
 *** Introduction to engineering data analysis and reproducible workflows
 
+Problem-driven DCE training for engineers.
+I would like us to develop at least 6 examples, which should each include:
+ - Begin with a real example engineering problem. Industry-specific problems are perfectly fine, provided the key concepts can be followed by other engineers.
+ - Present incrementally more detailed solutions, explaining the benefit of the additional information that they provide:
+ - Intuitive solution
+ - Standardised solution
+ - Informative solution (some sort of computational statistics)
+ - Ideally, each example will also help communicate the message of reproducible workflows using code, rather than spreadsheets.
+
 **** Proposed Example 1: Analysing Material Test Data
 
 A small number of fracture toughness tests have been performed:
