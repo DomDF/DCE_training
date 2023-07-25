@@ -1,10 +1,9 @@
 ---
 title: "Data-Centric Engineering Training"
 subtitle: "Dates TBC"
-jupyter: python3
 format:
   html:
-    # knitr: true
+    knitr: true
     theme: 
       - simplex
     highlight-style: atom-one
