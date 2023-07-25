@@ -11,6 +11,14 @@ I would like us to develop at least 6 examples, which should each include:
  - Informative solution (some sort of computational statistics)
  - Ideally, each example will also help communicate the message of reproducible workflows using code, rather than spreadsheets.
 
+**** Introduction Session: What is DCE
+
+ - How engineers have historically demonstrated safety
+ - How novel methods of collecting and analysing data might change this
+ - The role of uncertainty in risk management
+ - Overview of terminology: CS, ML, AI, probabilistic, neural network
+ - Overview of course - engineering-specific and problem focused!
+
 **** Proposed Example 1: Analysing Material Test Data
 
 A small number of fracture toughness tests have been performed:
@@ -45,6 +53,7 @@ Case study: Boeing MCAS failures which led to many fatalities accross multiple f
 - One part of solution: Use of data from multiple AoA sensor.
     How does this make the system safer?
     How much safer does this make the system?
+    What questions would you have as a regulator, assessing the new design?
 
  - Calulation
     Use simulated data to estimate the probability of an erroneous nosedive
